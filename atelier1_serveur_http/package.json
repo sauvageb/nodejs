@@ -1,0 +1,13 @@
+{
+  "name": "atelier1_serveur_http",
+  "version": "1.0.0",
+  "description": "Atelier 1 : Mettre en place un serveur HTTP avec node.js",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Boris SAUVAGE",
+  "license": "ISC"
+}

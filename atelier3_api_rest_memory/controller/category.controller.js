@@ -1,5 +1,6 @@
 import express from "express";
 import CategoryService from "../service/category.service.js";
+import {HttpResponse} from "../models/httpresponse.model.js";
 
 const router = express.Router();
 
@@ -8,7 +9,7 @@ export class CategoryController {
     async getCategories(req, resp, next) {
         try {
             const userList = await CategoryService.fetchAll();
-            resp.status(200).json(userList);
+            resp.status(200).json(new HttpResponse(userList, null));
         } catch (error) {
             next(error);
         }
@@ -56,7 +57,6 @@ router.get('/', categoryController.getCategories);
 router.get('/:id', categoryController.getCategory);
 router.post('/', categoryController.addCategory);
 router.delete('/:id', categoryController.deleteCategory);
-
 // router.put()
 
 export default router;

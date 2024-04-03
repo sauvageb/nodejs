@@ -5,7 +5,12 @@ import {Category} from "../repository/entity/category.entity.js";
 class CategoryService {
 
     async fetchById(id) {
-        return await CategoryRepository.findById(id);
+        let categoryFound = await CategoryRepository.findById(id);
+        if (categoryFound) {
+            return Promise.resolve(categoryFound);
+        } else {
+            return Promise.reject(new Error(`Category id=${id} not found`));
+        }
     }
 
     async fetchAll() {
@@ -15,6 +20,10 @@ class CategoryService {
     async createCategory(name) {
         const newCategory = new Category(null, name);
         return await CategoryRepository.create(newCategory);
+    }
+
+    async deleteCategory(id) {
+        return await CategoryRepository.delete(id);
     }
 }
 

@@ -9,6 +9,11 @@ app.use(express.json());
 app.use('/categories', categoryController);
 // app.use('/tutorials', tutorialsController);
 
+// Gestion des erreurs
+app.use((error, req, resp, next) => {
+    resp.status(error.status || 500).json({message: error.message || 'Internal server error'});
+});
+
 
 const PORT = 3000;
 const HOSTNAME = 'localhost';

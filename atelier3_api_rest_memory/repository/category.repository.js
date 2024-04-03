@@ -18,12 +18,7 @@ class CategoryRepository {
     ];
 
     async findById(id) {
-        const categoryFound = this.categories.find(c => c.id === id);
-        if (categoryFound) {
-            return Promise.resolve(categoryFound);
-        } else {
-            return Promise.reject(new Error(`Category id=${id} not found`));
-        }
+        return this.categories.find(c => c.id === id);
     }
 
     async findAll() {
@@ -34,6 +29,14 @@ class CategoryRepository {
         newCategory.id = this.categories.length + 1;
         this.categories.push(newCategory);
         return Promise.resolve(newCategory);
+    }
+
+    async delete(id) {
+        if (this.categories.find(c => c.id === id)) {
+            this.categories = this.categories.filter(c => c.id !== id);
+            return Promise.resolve(true);
+        }
+        return Promise.resolve(false);
     }
 }
 

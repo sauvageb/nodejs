@@ -9,7 +9,6 @@ const contacts = [
     new Contact(3, 'Johnson', 'Michael', '0690909090')
 ];
 
-
 router.get('/', function (req, res, next) {
     res.render('contacts', {contactList: contacts});
 });

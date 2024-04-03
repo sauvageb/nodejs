@@ -27,5 +27,4 @@ router.post('/add', (req, resp, next) => {
     resp.redirect('/contacts');
 });
 
-
 export default router;

@@ -18,11 +18,22 @@ class CategoryRepository {
     ];
 
     async findById(id) {
-        return Promise.resolve(this.categories.filter(c => c.id === id));
+        const categoryFound = this.categories.find(c => c.id === id);
+        if (categoryFound) {
+            return Promise.resolve(categoryFound);
+        } else {
+            return Promise.reject(new Error(`Category id=${id} not found`));
+        }
     }
 
     async findAll() {
         return Promise.resolve(this.categories);
+    }
+
+    async create(newCategory) {
+        newCategory.id = this.categories.length + 1;
+        this.categories.push(newCategory);
+        return Promise.resolve(newCategory);
     }
 }
 

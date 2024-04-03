@@ -6,7 +6,6 @@
 import test from 'debug'
 import http from 'http';
 import app from "../app.js";
-
 const debug = test('3-express-generator-twig:server');
 
 /**

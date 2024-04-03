@@ -1,0 +1,16 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+
+    <form action="/contacts/add" method="post">
+        <label for="lastname">Lastname</label>
+        <input id="lastname" type="text" name="lastname">
+        <label for="firstname">Firstname</label>
+        <input id="firstname" type="text" name="firstname">
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" name="phoneNumber">
+        <button type="submit">Add contact</button>
+    </form>
+
+{% endblock %}

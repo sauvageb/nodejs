@@ -1,0 +1,25 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{ title }}</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Lastname</th>
+        <th>Firstname</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contactList %}
+        <tr>
+          <td>{{ contact.id }}</td>
+          <td>{{ contact.lastname }}</td>
+          <td>{{ contact.firstname }}</td>
+          <td>{{ contact.phone }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

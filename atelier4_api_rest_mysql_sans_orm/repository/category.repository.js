@@ -1,28 +1,50 @@
 import getConnection from "./database.js";
+import {Category} from "./entity/category.entity.js";
 
 class CategoryRepository {
 
     async findById(id) {
-        return this.categories.find(c => c.id === id);
+        const connection = await getConnection();
+        try {
+            const [rows] = await connection.execute('SELECT * FROM categories WHERE id = ?', [id]);
+            if (rows.length > 0) {
+                return new Category(rows[0].id, rows[0].name);
+            }
+            return null;
+        } finally {
+            await connection.release();
+        }
     }
 
     async findAll() {
-        return Promise.resolve(this.categories);
+        const connection = await getConnection();
+        try {
+            const [rows] = await connection.execute('SELECT * FROM categories');
+            return rows.map(row => new Category(row.id, row.name));
+        } finally {
+            await connection.release();
+        }
     }
 
     async create(newCategory) {
         const connection = await getConnection();
-        const [result] = await connection.execute('INSERT INTO categories (name) VALUES (?)', [newCategory.name]);
-        newCategory.id = result.insertId;
-        return Promise.resolve(newCategory);
+        try {
+            const [result] = await connection.execute('INSERT INTO categories (name) VALUES (?)', [newCategory.name]);
+            newCategory.id = result.insertId;
+            return newCategory;
+        } finally {
+            await connection.release();
+        }
     }
 
     async delete(id) {
-        if (this.categories.find(c => c.id === id)) {
-            this.categories = this.categories.filter(c => c.id !== id);
-            return Promise.resolve(true);
+        const connection = await getConnection();
+        try {
+            const [result] = await connection.execute('DELETE FROM categories WHERE id = ?', [id]);
+            return result.affectedRows > 0;
+        } finally {
+            await connection.release();
         }
-        return Promise.resolve(false);
     }
 }
 

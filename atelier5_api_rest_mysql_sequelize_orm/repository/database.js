@@ -25,7 +25,7 @@ try {
 
 // Creating schema
 try {
-    await sequelize.sync({force: true});
+    await sequelize.sync({force: false});
     console.log("Tables synchronized successfully");
 } catch (error) {
     console.error('Error synchronizing tables :', error);

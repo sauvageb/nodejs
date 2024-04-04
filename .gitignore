@@ -2,3 +2,4 @@ node_modules/**
 /.idea/
 /**/node_modules/
 *.iml
+/atelier6_api_rest_mongodb/data/

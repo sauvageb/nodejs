@@ -1,0 +1,14 @@
+{
+  DatabaseMongo: {
+    url: 'mongodb://127.0.0.1:27017/nodejs_atelier6'
+  },
+  Database: {
+    host: '127.0.0.1',
+    port: 8889,
+    username: 'root',
+    password: 'root',
+    database: 'nodejs_atelier4',
+    dialect: 'mysql',
+    maxConnections: 100
+  }
+}
